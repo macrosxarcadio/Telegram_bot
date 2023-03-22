@@ -2,12 +2,14 @@ const { Telegraf } = require('telegraf');
 var moment = require('moment');
 const { google } = require('googleapis');
 var _ = require('lodash');
-require('dotenv').config()
+require('dotenv').config();
+const path = require('path');
+
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 const auth = new google.auth.GoogleAuth({
-    keyFile: 'credentials.json',
+    keyFile: path.join(__dirname, '/etc/secrets/credentials.json'),
     scopes: 'https://www.googleapis.com/auth/spreadsheets'
 })
 
