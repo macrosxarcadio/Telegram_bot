@@ -35,12 +35,12 @@ async function readBalance() {
     return balance;
 }
 
+console.log("AUTENTICACION",auth);
 
 async function write(data) {
     //Create client instance
     const client = await auth.getClient();
     //Instance of google sheets api
-    console.log(client);
     const googleSheets = google.sheets({ version: 'v4', auth: client });
     try {
         const writing = await googleSheets.spreadsheets.values.append({
