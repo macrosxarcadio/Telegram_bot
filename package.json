@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "googleapis": "^104.0.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.3",
+    "telegraf": "^4.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
