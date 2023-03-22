@@ -7,9 +7,11 @@ require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 const auth = new google.auth.GoogleAuth({
-    keyFile: '/etc/secrets/credentials.json',
+    keyFile: './etc/secrets/credentials.json',
     scopes: 'https://www.googleapis.com/auth/spreadsheets'
 })
+
+/* console.log('/etc/secrets/credentials.json'); */
 
 async function read(range, majorDimension) {
     //Create client instance
@@ -38,6 +40,7 @@ async function write(data) {
     //Create client instance
     const client = await auth.getClient();
     //Instance of google sheets api
+    console.log(client);
     const googleSheets = google.sheets({ version: 'v4', auth: client });
     try {
         const writing = await googleSheets.spreadsheets.values.append({
