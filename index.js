@@ -7,7 +7,7 @@ require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 const auth = new google.auth.GoogleAuth({
-    keyFile: './etc/secrets/credentials.json',
+    keyFile: '/etc/secrets/credentials.json',
     scopes: 'https://www.googleapis.com/auth/spreadsheets'
 })
 
