@@ -80,6 +80,11 @@ bot.command('w', (ctx) => {
     write(data);
     ctx.reply(`persona: ${personal}, monto: ${monto}, notas:${notes}, fecha: ${regtime}`);
 })
+
+bot.command('test', (ctx) => {
+    ctx.reply('el bot funciona');
+})
+
 bot.launch()
 
 // Enable graceful stop
