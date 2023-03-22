@@ -7,7 +7,7 @@ require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 const auth = new google.auth.GoogleAuth({
-    keyFile: 'credentials.json',
+    keyFile: '/etc/secrets/credentials.json',
     scopes: 'https://www.googleapis.com/auth/spreadsheets'
 })
 
@@ -18,7 +18,7 @@ async function read(range, majorDimension) {
     const googleSheets = google.sheets({ version: 'v4', auth: client });
     const met = await googleSheets.spreadsheets.values.get({
         auth,
-        spreadsheetId: '1z48rYKJREW8FKVdCwOBfwsujwbWKXq73fHIoqOBOcu4',
+        spreadsheetId: '1Ku5VfmmmsTGDzEUoPqUQ-Hdh0bD-mmSfF4u6O6sFj8I',
         range: `${range}`,
         majorDimension: majorDimension ? majorDimension : null,
     });
@@ -41,8 +41,8 @@ async function write(data) {
     const googleSheets = google.sheets({ version: 'v4', auth: client });
     try {
         const writing = await googleSheets.spreadsheets.values.append({
-            spreadsheetId: '1z48rYKJREW8FKVdCwOBfwsujwbWKXq73fHIoqOBOcu4',
-            range: 'hoja_1!A:E',
+            spreadsheetId: '1Ku5VfmmmsTGDzEUoPqUQ-Hdh0bD-mmSfF4u6O6sFj8I',
+            range: 'Gastos-Commit!A:H',
             valueInputOption: 'RAW',
             resource: data,
             auth,
