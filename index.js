@@ -85,6 +85,21 @@ bot.command('test', (ctx) => {
     ctx.reply('el bot funciona');
 })
 
+bot.command('gasto', (ctx) => {
+    const regtime = moment().format('DD-MM-YYYY');
+    const str = ctx.message.text;
+    const spentReg = str.match(/(?:^\/\w+)(\s+)(?<worker>\w+)(\s+)(?<money>-?\d+)(\s+)+(?<notes>.+)/mu).groups;
+    const data = { values: [[,,regtime,,spentReg.money,spentReg.worker, spentReg.notes,'bot']] }
+    console.log("registro",spentReg,spentReg[1],spentReg.money);
+    write(data);
+    ctx.reply(` persona: ${spentReg.worker} \n monto: ${spentReg.money} \n notas: ${spentReg.notes} \n fecha: ${regtime}`);
+});
+
+// Test telegram service with out test google services 
+bot.command('help', (ctx) => {
+    ctx.reply('Hola! soy el bot de gestion contable de commit_36 \n\n Consultas que puedes realizar: \n\n 1) Consultar sueldo antes de aportes \n\t/sueldo mes trabajador \n 2)Registrar gasto \n\t /gasto trabajador monto tipo de gasto');
+})
+
 bot.launch()
 
 // Enable graceful stop
