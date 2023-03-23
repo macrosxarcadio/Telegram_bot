@@ -10,8 +10,6 @@ const auth = new google.auth.GoogleAuth({
     scopes: 'https://www.googleapis.com/auth/spreadsheets'
 })
 
-//Test
-
 async function read(range, majorDimension) {
     //Create client instance
     const client = await auth.getClient();
@@ -37,8 +35,10 @@ async function readBalance() {
 async function write(data) {
     //Create client instance
     const client = await auth.getClient();
+
+    console.log(client);
     //Instance of google sheets api
-    const googleSheets = google.sheets({ version: 'v4', auth: client });
+    const googleSheets = await google.sheets({ version: 'v4', auth: client });
     try {
         const writing = await googleSheets.spreadsheets.values.append({
             spreadsheetId: '1Ku5VfmmmsTGDzEUoPqUQ-Hdh0bD-mmSfF4u6O6sFj8I',
@@ -67,18 +67,6 @@ bot.command('r', (ctx) => {
         //map(rel => ctx.reply(rel));
     }
     )
-})
-
-bot.command('w', (ctx) => {
-    const regtime = moment().format('L');
-    const str = ctx.message.text;
-    const monto = str.match(/(\d[0-9])/gu).join('');
-    const txt = str.split(':');
-    const notes = txt.pop();
-    const personal = txt.shift().match(/(\w[a-z])/gu).join('');
-    const data = { values: [[regtime, personal, monto, 'cajita', notes]] }
-    write(data);
-    ctx.reply(`persona: ${personal}, monto: ${monto}, notas:${notes}, fecha: ${regtime}`);
 })
 
 bot.command('test', (ctx) => {
