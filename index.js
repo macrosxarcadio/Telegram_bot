@@ -11,11 +11,11 @@ const auth = new google.auth.GoogleAuth({
 });
 
 async function write(data) {
-    //Create client instance
-    const client = await auth.getClient();
     try {
+        //Create client instance
+        const client = await auth.getClient();
         //Instance of google sheets api
-        const googleSheets = google.sheets({ version: 'v4', auth: await client });
+        const googleSheets = google.sheets({ version: 'v4', auth: client });
         const writing = googleSheets.spreadsheets.values.append({
             spreadsheetId: '1Ku5VfmmmsTGDzEUoPqUQ-Hdh0bD-mmSfF4u6O6sFj8I',
             range: 'Gastos-Commit!A:L',
@@ -46,7 +46,7 @@ bot.command('help', (ctx) => {
 
 const port = process.env.PORT || 3000;
 
-console.log("PUERTO",port);
+console.log("PUERTO", port);
 
 bot.launch()
 

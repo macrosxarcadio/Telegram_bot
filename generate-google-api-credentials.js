@@ -15,7 +15,6 @@ const credentials = {
   client_x509_cert_url: process.env.GOOGLE_CLIENT_X509_CERT_URL,
 };
 
-console.log("CRED",JSON.stringify(credentials, null, 2));
 fs.writeFileSync(
   'google-api-credentials.json',
   JSON.stringify(credentials, null, 2)
