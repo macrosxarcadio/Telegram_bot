@@ -31,7 +31,7 @@ async function readBalance() {
     let balance = await read(`hoja_2!D${row + 1}`, 'COLUMNS');
     return balance;
 }
-
+//t//
 async function write(data) {
     //Create client instance
     try {
