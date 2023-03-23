@@ -76,10 +76,7 @@ bot.command('gasto', (ctx) => {
     const spentReg = str.match(/(?:^\/\w+)(\s+)(?<worker>\w+)(\s+)(?<money>-?\d+)(\s+)+(?<notes>.+)/mu).groups;
     const data = { values: [[, , regtime, , spentReg.money, spentReg.worker, spentReg.notes, 'bot']] }
     console.log("registro", spentReg, spentReg[1], spentReg.money);
-
-        write(data);
-
-
+    write(data);
     ctx.reply(` persona: ${spentReg.worker} \n monto: ${spentReg.money} \n notas: ${spentReg.notes} \n fecha: ${regtime}`);
 });
 
