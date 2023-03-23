@@ -10,6 +10,8 @@ const auth = new google.auth.GoogleAuth({
     scopes: 'https://www.googleapis.com/auth/spreadsheets'
 })
 
+//Test
+
 async function read(range, majorDimension) {
     //Create client instance
     const client = await auth.getClient();
@@ -31,8 +33,6 @@ async function readBalance() {
     let balance = await read(`hoja_2!D${row + 1}`, 'COLUMNS');
     return balance;
 }
-
-console.log("AUTENTICACION",auth);
 
 async function write(data) {
     //Create client instance
