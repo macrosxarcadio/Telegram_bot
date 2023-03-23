@@ -87,7 +87,7 @@ bot.command('help', (ctx) => {
 
 const port = process.env.PORT || 3000;
 
-console.log(port);
+console.log("PUERTO",port);
 
 bot.launch()
 
