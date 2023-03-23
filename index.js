@@ -4,7 +4,6 @@ const { google } = require('googleapis');
 var _ = require('lodash');
 require('dotenv').config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
-const lock = new Lock();
 
 const auth = new google.auth.GoogleAuth({
     keyFile: 'google-api-credentials.json',
