@@ -85,6 +85,10 @@ bot.command('help', (ctx) => {
     ctx.reply('Hola! soy el bot de gestion contable de commit_36 \n\n Consultas que puedes realizar: \n\n 1) Consultar sueldo antes de aportes \n\t/sueldo mes trabajador \n 2)Registrar gasto \n\t /gasto trabajador monto tipo de gasto');
 })
 
+const port = process.env.PORT || 3000;
+
+console.log(port);
+
 bot.launch()
 
 // Enable graceful stop
