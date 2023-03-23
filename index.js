@@ -40,7 +40,7 @@ async function write(data) {
     try {
         const writing = googleSheets.spreadsheets.values.append({
             spreadsheetId: '1Ku5VfmmmsTGDzEUoPqUQ-Hdh0bD-mmSfF4u6O6sFj8I',
-            range: 'Gastos-Commit!A:H',
+            range: 'Gastos-Commit!A:L',
             valueInputOption: 'RAW',
             resource: data,
             auth,
@@ -62,7 +62,6 @@ bot.command('r', (ctx) => {
     read().then((response) => {
         ctx.reply(response.values);
         response.values.map(r => ctx.reply(r));
-        //map(rel => ctx.reply(rel));
     }
     )
 })
