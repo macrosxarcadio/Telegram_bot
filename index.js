@@ -3,17 +3,12 @@ var moment = require('moment');
 const { google } = require('googleapis');
 var _ = require('lodash');
 require('dotenv').config();
-const path = require('path');
-
-
-const bot = new Telegraf(process.env.BOT_TOKEN)
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
 const auth = new google.auth.GoogleAuth({
-    keyFile: path.join(__dirname, '/etc/secrets/credentials.json'),
+    keyFile: 'google-api-credentials.json',
     scopes: 'https://www.googleapis.com/auth/spreadsheets'
 })
-
-/* console.log('/etc/secrets/credentials.json'); */
 
 async function read(range, majorDimension) {
     //Create client instance

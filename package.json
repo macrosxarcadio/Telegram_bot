@@ -10,6 +10,7 @@
     "nodemon": "^2.0.18"
   },
   "scripts": {
+    "prebuild": "node generate-google-api-credentials.js",
     "dev": "nodemon index.js",
     "start": "node index.js"
   }
