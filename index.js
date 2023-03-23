@@ -35,12 +35,10 @@ async function readBalance() {
 async function write(data) {
     //Create client instance
     const client = await auth.getClient();
-
-    console.log(client);
     //Instance of google sheets api
-    const googleSheets = await google.sheets({ version: 'v4', auth: client });
+    const googleSheets = google.sheets({ version: 'v4', auth: client });
     try {
-        const writing = await googleSheets.spreadsheets.values.append({
+        const writing = googleSheets.spreadsheets.values.append({
             spreadsheetId: '1Ku5VfmmmsTGDzEUoPqUQ-Hdh0bD-mmSfF4u6O6sFj8I',
             range: 'Gastos-Commit!A:H',
             valueInputOption: 'RAW',
