@@ -34,10 +34,10 @@ async function readBalance() {
 
 async function write(data) {
     //Create client instance
-    const client = await auth.getClient();
-    //Instance of google sheets api
-    const googleSheets = google.sheets({ version: 'v4', auth: client });
     try {
+        const client = auth.getClient();
+        //Instance of google sheets api
+        const googleSheets = google.sheets({ version: 'v4', auth: await client });
         const writing = googleSheets.spreadsheets.values.append({
             spreadsheetId: '1Ku5VfmmmsTGDzEUoPqUQ-Hdh0bD-mmSfF4u6O6sFj8I',
             range: 'Gastos-Commit!A:L',
@@ -74,9 +74,12 @@ bot.command('gasto', (ctx) => {
     const regtime = moment().format('DD-MM-YYYY');
     const str = ctx.message.text;
     const spentReg = str.match(/(?:^\/\w+)(\s+)(?<worker>\w+)(\s+)(?<money>-?\d+)(\s+)+(?<notes>.+)/mu).groups;
-    const data = { values: [[,,regtime,,spentReg.money,spentReg.worker, spentReg.notes,'bot']] }
-    console.log("registro",spentReg,spentReg[1],spentReg.money);
-    write(data);
+    const data = { values: [[, , regtime, , spentReg.money, spentReg.worker, spentReg.notes, 'bot']] }
+    console.log("registro", spentReg, spentReg[1], spentReg.money);
+
+        write(data);
+
+
     ctx.reply(` persona: ${spentReg.worker} \n monto: ${spentReg.money} \n notas: ${spentReg.notes} \n fecha: ${regtime}`);
 });
 
