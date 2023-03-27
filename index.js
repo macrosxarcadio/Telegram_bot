@@ -1,4 +1,4 @@
-import express from "express";
+const express = require('express');
 const app = express();
 const { Telegraf } = require('telegraf');
 var moment = require('moment');
