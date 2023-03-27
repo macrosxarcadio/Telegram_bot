@@ -3,7 +3,22 @@ var moment = require('moment');
 const { google } = require('googleapis');
 var _ = require('lodash');
 require('dotenv').config();
+const fs = require('fs');
 const bot = new Telegraf(process.env.BOT_TOKEN);
+
+// Read the contents of the JSON file
+fs.readFile('google-api-credentials.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+  
+    // Parse the JSON data
+    const jsonData = JSON.parse(data);
+  
+    // Log the JSON data to the console
+    console.log(jsonData);
+});
 
 const auth = new google.auth.GoogleAuth({
     keyFile: 'google-api-credentials.json',

@@ -12,6 +12,6 @@
   "scripts": {
     "prestart": "node generate-google-api-credentials.js",
     "dev": "nodemon index.js",
-    "start": "node index.js "
+    "start": "node index.js --trace-warnings"
   }
 }
