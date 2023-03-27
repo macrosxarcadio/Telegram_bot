@@ -63,7 +63,7 @@ bot.on('help', (ctx) => {
 
 const port = process.env.PORT || 1000;
 
-app.use(async () => await bot.createWebhook({ domain: 'https://telegram-bot-g1vd.onrender.com' }));
+/* app.use(async () => await bot.createWebhook({ domain: 'https://telegram-bot-g1vd.onrender.com' })); */
 
 app.listen(port, () => {
 bot.launch({ webhook: { domain: 'https://telegram-bot-g1vd.onrender.com', port: port } })
