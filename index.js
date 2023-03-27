@@ -65,7 +65,7 @@ const port = process.env.PORT || 1000;
 
 app.use(bot.webhookCallback('/telegraf'));
 
-bot.telegram.setWebhook('https://telegram-bot-g1vd.onrender.com');
+bot.telegram.setWebhook('https://telegram-bot-g1vd.onrender.com/telegraf');
 
 app.listen(port, () => console.log("Webhook bot listening on port", port));
 
