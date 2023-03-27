@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 const { Telegraf } = require('telegraf');
 var moment = require('moment');
 const { google } = require('googleapis');
@@ -7,6 +6,7 @@ var _ = require('lodash');
 require('dotenv').config();
 const fs = require('fs');
 const bot = new Telegraf(process.env.BOT_TOKEN);
+const app = express();
 
 // Read the contents of the JSON file
 fs.readFile('google-api-credentials.json', 'utf8', (err, data) => {
