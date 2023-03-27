@@ -16,20 +16,19 @@ async function write(data) {
         const client = await auth.getClient();
         //Instance of google sheets api
         const googleSheets = google.sheets({ version: 'v4', auth: client });
-        const writing = googleSheets.spreadsheets.values.append({
+        googleSheets.spreadsheets.values.append({
             spreadsheetId: '1Ku5VfmmmsTGDzEUoPqUQ-Hdh0bD-mmSfF4u6O6sFj8I',
             range: 'Gastos-Commit!A:L',
             valueInputOption: 'RAW',
             resource: data,
             auth,
         });
-        return writing;
     } catch (error) {
         console.log(error);
     }
 }
 
-/* bot.command('gasto', (ctx) => {
+ bot.command('gasto', (ctx) => {
     const regtime = moment().format('DD-MM-YYYY');
     const str = ctx.message.text;
     const spentReg = str.match(/(?:^\/\w+)(\s+)(?<worker>\w+)(\s+)(?<money>-?\d+)(\s+)+(?<notes>.+)/mu).groups;
@@ -37,14 +36,14 @@ async function write(data) {
     console.log("registro", spentReg, spentReg[1], spentReg.money);
     write(data);
     ctx.reply(` persona: ${spentReg.worker} \n monto: ${spentReg.money} \n notas: ${spentReg.notes} \n fecha: ${regtime}`);
-}); */
+}); 
 
 // Test telegram service with out test google services 
 bot.command('help', (ctx) => {
     ctx.reply('Hola! soy el bot de gestion contable de commit_36 \n\n Consultas que puedes realizar: \n\n 1) Consultar sueldo antes de aportes \n\t/sueldo mes trabajador \n 2)Registrar gasto \n\t /gasto trabajador monto tipo de gasto');
 })
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 1000;
 
 console.log("PUERTO", port);
 
