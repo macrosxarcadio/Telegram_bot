@@ -1,3 +1,5 @@
+import express from "express";
+const app = express();
 const { Telegraf } = require('telegraf');
 var moment = require('moment');
 const { google } = require('googleapis');
@@ -60,9 +62,12 @@ bot.command('help', (ctx) => {
 
 const port = process.env.PORT || 1000;
 
-console.log("PUERTO", port);
-
+app.listen(port, () => {
+console.log("Listening on port", port);
 bot.launch()
+}
+);
+
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
