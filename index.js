@@ -69,7 +69,6 @@ bot.launch(
     {
         webhook: {
         domain:'https://telegram-bot-g1vd.onrender.com',
-        port:port,
         hookPath:'/telegraf'
         }
     }
