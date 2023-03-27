@@ -56,16 +56,13 @@ async function write(data) {
 }); 
 
 // Test telegram service with out test google services 
-bot.on('help', (ctx) => {
-    ctx.reply('Hola! soy el bot de gestion contable de commit_36 \n\n Consultas que puedes realizar: \n\n 1) Consultar sueldo antes de aportes \n\t/sueldo mes trabajador \n 2)Registrar gasto \n\t /gasto trabajador monto tipo de gasto');
-})
+bot.on('help', (ctx) => ctx.reply('Hola! soy el bot de gestion contable de commit_36 \n\n Consultas que puedes realizar: \n\n 1) Consultar sueldo antes de aportes \n\t/sueldo mes trabajador \n 2)Registrar gasto \n\t /gasto trabajador monto tipo de gasto'));
 
 const port = process.env.PORT || 1000;
 
 app.use(async () => await bot.createWebhook({ domain: 'https://telegram-bot-g1vd.onrender.com' }));
 
 app.listen(port, () => console.log("Listening on port", port));
-
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
