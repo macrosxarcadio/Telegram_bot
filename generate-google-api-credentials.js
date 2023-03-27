@@ -2,6 +2,7 @@ const fs = require('fs');
 // Load variables from .env into process.env
 require('dotenv').config();
 
+process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
 const credentials = {
   type: 'service_account',
   project_id: 'bot-test-354217',
