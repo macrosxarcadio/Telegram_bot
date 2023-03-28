@@ -54,7 +54,7 @@ async function write(data) {
     console.log("registro", spentReg, spentReg[1], spentReg.money);
     console.log(data);
     write(data);
-    ctx.reply(` persona: ${spentReg.worker} \n monto: ${spentReg.money} \n notas: ${spentReg.notes} \n fecha: ${regtime}`);
+    ctx.reply(`persona: ${spentReg.worker}\n monto: ${spentReg.money}\n notas: ${spentReg.notes}\n fecha: ${regtime}`);
 }); 
 
 // Test telegram service with out test google services 
