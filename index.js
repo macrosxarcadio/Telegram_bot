@@ -37,6 +37,7 @@ async function write(data) {
             spreadsheetId: '1Ku5VfmmmsTGDzEUoPqUQ-Hdh0bD-mmSfF4u6O6sFj8I',
             range: 'Gastos-Commit!A:J',
             valueInputOption: 'RAW',
+            insertDataOption: 'INSERT_ROWS',
             resource: data,
             auth,
         });
