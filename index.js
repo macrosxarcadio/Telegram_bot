@@ -5,21 +5,18 @@ const { google } = require('googleapis');
 var _ = require('lodash');
 require('dotenv').config();
 const fs = require('fs');
-const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Telegraf(process.env.BOT_ENV === "dev" ? process.env.BOT_TOKEN_TEST : process.env.BOT_TOKEN )
 const app = express();
 
 // Read the contents of the JSON file
 fs.readFile('google-api-credentials.json', 'utf8', (err, data) => {
     if (err) {
-      console.error(err);
-      return;
+        console.error(err);
+        return;
     }
-  
+
     // Parse the JSON data
     const jsonData = JSON.parse(data);
-  
-    // Log the JSON data to the console
-    console.log(jsonData);
 });
 
 const auth = new google.auth.GoogleAuth({
@@ -46,7 +43,7 @@ async function write(data) {
     }
 }
 
- bot.command('gasto', (ctx) => {
+bot.command('gasto', (ctx) => {
     const regtime = moment().format('DD-MM-YYYY');
     const str = ctx.message.text;
     const spentReg = str.match(/(?:^\/\w+)(\s+)(?<worker>\w+)(\s+)(?<money>-?\d+)(\s+)+(?<notes>.+)/mu).groups;
@@ -55,7 +52,7 @@ async function write(data) {
     console.log(data);
     write(data);
     ctx.reply(`persona: ${spentReg.worker}\n monto: ${spentReg.money}\n notas: ${spentReg.notes}\n fecha: ${regtime}`);
-}); 
+});
 
 // Test telegram service with out test google services 
 bot.command('help', (ctx) => {
@@ -63,7 +60,7 @@ bot.command('help', (ctx) => {
     ctx.reply('Hola! soy el bot de gestion contable de commit_36 \n\n Consultas que puedes realizar: \n\n 1) Consultar sueldo antes de aportes \n\t/sueldo mes trabajador \n 2)Registrar gasto \n\t /gasto trabajador monto tipo de gasto')
 });
 
-const port = process.env.PORT || 1000;
+const port = process.env.PORT || 4000;
 
 app.use(bot.webhookCallback('/telegraf'));
 
