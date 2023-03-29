@@ -5,8 +5,10 @@ const { google } = require('googleapis');
 var _ = require('lodash');
 require('dotenv').config();
 const fs = require('fs');
-const bot = new Telegraf(process.env.BOT_ENV === "dev" ? process.env.BOT_TOKEN_TEST : process.env.BOT_TOKEN )
+const bot = new Telegraf(process.env.BOT_ENV === "dev" ? process.env.BOT_TOKEN_TEST : process.env.BOT_TOKEN)
 const app = express();
+const ngrok = require('ngrok');
+let url = null;
 
 // Read the contents of the JSON file
 fs.readFile('google-api-credentials.json', 'utf8', (err, data) => {
@@ -57,14 +59,22 @@ bot.command('gasto', (ctx) => {
 // Test telegram service with out test google services 
 bot.command('help', (ctx) => {
     console.log("help command");
-    ctx.reply('Hola! soy el bot de gestion contable de commit_36 \n\n Consultas que puedes realizar: \n\n 1) Consultar sueldo antes de aportes \n\t/sueldo mes trabajador \n 2)Registrar gasto \n\t /gasto trabajador monto tipo de gasto')
+    ctx.reply('Hola! soy el bot de gestion contable de commit_36 \n\n Consultas que puedes realizar: \n\n 1) Consultar cuentas/personal disponible \n\t/cuentas \n 2)Registrar gasto \n\t /gasto trabajador monto tipo de gasto')
 });
 
 const port = process.env.PORT || 4000;
 
 app.use(bot.webhookCallback('/telegraf'));
 
-bot.telegram.setWebhook('https://telegram-bot-g1vd.onrender.com/telegraf');
+process.env.BOT_ENV === "dev" ? (async function () {
+    url = await ngrok.connect(port);
+    bot.telegram.setWebhook(`${url}/telegraf`);
+    console.log(url);
+    console.log(process.env.BOT_TOKEN_TEST);
+})() :
+    bot.telegram.setWebhook('https://telegram-bot-g1vd.onrender.com/telegraf');
+
+
 
 app.listen(port, () => console.log("Webhook bot listening on port", port));
 

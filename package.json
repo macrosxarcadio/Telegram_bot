@@ -5,6 +5,7 @@
     "googleapis": "^104.0.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",
+    "ngrok": "^4.3.3",
     "telegraf": "^4.8.5"
   },
   "devDependencies": {
