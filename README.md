@@ -13,9 +13,9 @@ The project use these libs:
     "telegraf"
     "nodemon"
 
-Actual project deployed in render
-
 ## Test and Deploy
+
+Actual project deployed in render
 
 Production:
 
