@@ -12,7 +12,8 @@
   },
   "scripts": {
     "prestart": "node generate-google-api-credentials.js",
-    "dev": "nodemon index.js",
-    "start": "node index.js --trace-warnings"
+    "start": "node index.js --trace-warnings",
+    "predev": "node generate-google-api-credentials.js",
+    "dev": "BOT_ENV='dev' node index.js"
   }
 }
