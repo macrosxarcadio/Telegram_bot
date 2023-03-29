@@ -12,6 +12,7 @@ The project use these libs:
     "moment"
     "telegraf"
     "nodemon"
+    "ngrok" for local development secure tunnel https://github.com/bubenshchykov/ngrok
 
 ## Test and Deploy
 
