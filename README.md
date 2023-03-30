@@ -1,18 +1,34 @@
-# expenses bot test
+# Expenses bot test
 
-Accounting bot for register expenses records, actual use in commit_36 coop.
+Accounting bot for register expenses records, actual use in [**commit_36 coop**](https://commite.ar/) .
 
-## Stack
+## Pre Installation
+
+Require a google-api-credentials for google sheet api (service account):
+
+https://developers.google.com/workspace/guides/create-credentials
+
+Require to create a bot and its corresponding token:
+
+https://core.telegram.org/bots/api
+
+
+## Installation
+
+npm install
+
+
+## Lear more about the Stack
 
 The project use these libs:
-    "dotenv"
-    "express"
-    "googleapis"
-    "lodash"
-    "moment"
-    "telegraf"
-    "nodemon"
-    "ngrok" for local development secure tunnel https://github.com/bubenshchykov/ngrok
+    dotenv
+    express
+    googleapis
+    lodash
+    moment
+    telegraf
+    nodemon
+    ngrok for local development secure tunnel https://github.com/bubenshchykov/ngrok
 
 ## Test and Deploy
 
@@ -26,11 +42,8 @@ Development:
 
 npm run dev
 
-## Installation
-
-npm install
-
 ## Usage
+
 https://core.telegram.org/bots/api#authorizing-your-bot
 
 Set Tokens:
@@ -41,9 +54,8 @@ Registro gasto:
 /gasto personal/cuenta monto notas (la fecha toma de referencia el dia del mensaje).
 
 Personal/Cuentas disponibles:
-fondo: Fondo disponible en la cooperativa.
+/cuentas
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
 
-## Project status
+Thank's mariano walter and toni
