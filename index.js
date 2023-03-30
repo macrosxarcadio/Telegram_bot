@@ -55,6 +55,36 @@ bot.command('gasto', (ctx) => {
     ctx.reply(`persona: ${spentReg.worker}\n monto: ${spentReg.money}\n notas: ${spentReg.notes}\n fecha: ${regtime}`);
 });
 
+async function read(range, majorDimension) {
+    //Create client instance
+    const client = await auth.getClient();
+    //Instance of google sheets api
+    const googleSheets = google.sheets({ version: 'v4', auth: client });
+    const met = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId: '1Ku5VfmmmsTGDzEUoPqUQ-Hdh0bD-mmSfF4u6O6sFj8I',
+        range: `${range}`,
+        majorDimension: majorDimension ? majorDimension : null,
+    });
+    return met.data.values;
+}
+
+async function readBalance() {
+    // funciona como un buscar V
+    let accounts = await read('Gastos-Commit!L4:L20', 'COLUMNS');
+    let listAccounts = accounts[0];
+    console.log(listAccounts);
+    return listAccounts
+}
+
+bot.command('cuentas',(ctx) => {
+    readBalance().then(accounts => {
+        let text = accounts.join(", ");
+        ctx.reply(text);
+    });
+})
+
+
 // Test telegram service with out test google services 
 bot.command('help', (ctx) => {
     console.log("help command");
