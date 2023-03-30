@@ -1,12 +1,11 @@
-const express = require('express');
 const { Telegraf } = require('telegraf');
 var moment = require('moment');
 const { google } = require('googleapis');
 var _ = require('lodash');
 require('dotenv').config();
 const fs = require('fs');
+const app = require('./app');
 const bot = new Telegraf(process.env.BOT_ENV === "dev" ? process.env.BOT_TOKEN_TEST : process.env.BOT_TOKEN)
-const app = express();
 const ngrok = require('ngrok');
 let url = null;
 
@@ -73,7 +72,6 @@ process.env.BOT_ENV === "dev" ? (async function () {
     console.log(process.env.BOT_TOKEN_TEST);
 })() :
     bot.telegram.setWebhook('https://telegram-bot-g1vd.onrender.com/telegraf');
-
 
 
 app.listen(port, () => console.log("Webhook bot listening on port", port));
